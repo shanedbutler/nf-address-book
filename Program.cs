@@ -27,21 +27,21 @@
                 Address = "888 Easy St, Testville, TN 11111"
             };
 
-
             // Create an AddressBook and add some contacts to it
             AddressBook addressBook = new AddressBook();
-            addressBook.AddContact(bob);
-            addressBook.AddContact(sue);
-            addressBook.AddContact(juan);
 
-            // Try to add a contact a second time
             try
             {
-            addressBook.AddContact(sue);
+                addressBook.AddContact(bob);
+                addressBook.AddContact(sue);
+                addressBook.AddContact(juan);
+
+                // Try to add a contact a second time
+                addressBook.AddContact(sue);
             }
             catch
             {
-                Console.WriteLine($"Address book already contains that contact");
+                Console.WriteLine($"Address book already contains {sue.Email} contact\n");
             }
 
 
@@ -52,25 +52,26 @@
             "juan.lopez@email.com",
             "bob.smith@email.com"
             };
-
             // Insert an email that does NOT match a Contact
-            try
-            {
-                emails.Insert(1, "not.in.addressbook@email.com");
-            }
-            catch
-            {
-                Console.WriteLine("User by that email cannot be found!");
-            }
+            emails.Insert(1, "not.in.addressbook@email.com");
 
             //  Search the AddressBook by email and print the information about each Contact
             foreach (string email in emails)
             {
-                Contact contact = addressBook.GetByEmail(email);
-                Console.WriteLine("----------------------------");
-                Console.WriteLine($"Name: {contact.FullName}");
-                Console.WriteLine($"Email: {contact.Email}");
-                Console.WriteLine($"Address: {contact.Address}");
+                try
+                {
+                    Contact contact = addressBook.GetByEmail(email);
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine($"Name: {contact.FullName}");
+                    Console.WriteLine($"Email: {contact.Email}");
+                    Console.WriteLine($"Address: {contact.Address}");
+                }
+
+                catch
+                {
+                    Console.WriteLine("----------------------------");
+                    Console.WriteLine($"The email address \"{email}\" cannot be found");
+                }
             }
         }
     }
