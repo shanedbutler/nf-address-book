@@ -10,9 +10,7 @@ namespace AddressBookSpace
         }
         public Contact GetByEmail(string email)
         {
-
             return _contactList[email];
-
         }
     }
 }
