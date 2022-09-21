@@ -10,20 +10,9 @@ namespace AddressBookSpace
         }
         public Contact GetByEmail(string email)
         {
-            foreach (string contactEmail in _contactList.Keys)
-            {
-                try
-                {
-                    if (contactEmail.Contains(email))
-                    {
-                        return _contactList[contactEmail];
-                    }
-                }
-                catch (System.Exception)
-                {
-                    throw;
-                }
-            }
+
+            return _contactList[email];
+
         }
     }
 }
