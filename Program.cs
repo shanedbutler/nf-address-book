@@ -35,7 +35,14 @@
             addressBook.AddContact(juan);
 
             // Try to add a contact a second time
+            try
+            {
             addressBook.AddContact(sue);
+            }
+            catch
+            {
+                Console.WriteLine($"Address book already contains that contact");
+            }
 
 
             // Create a list of emails that match our Contacts
@@ -47,8 +54,14 @@
             };
 
             // Insert an email that does NOT match a Contact
-            emails.Insert(1, "not.in.addressbook@email.com");
-
+            try
+            {
+                emails.Insert(1, "not.in.addressbook@email.com");
+            }
+            catch
+            {
+                Console.WriteLine("User by that email cannot be found!");
+            }
 
             //  Search the AddressBook by email and print the information about each Contact
             foreach (string email in emails)
